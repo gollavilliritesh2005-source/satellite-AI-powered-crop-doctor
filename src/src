@@ -1,0 +1,42 @@
+class CropDoctorAI:
+    """
+    AI Advisory Engine that provides diagnoses, probable causes, 
+    and actionable prescriptions based on satellite metrics.
+    """
+
+    def diagnose(self, metrics: dict, crop_type: str = "General Crop") -> dict:
+        ndvi = metrics["mean_ndvi"]
+        ndwi = metrics["mean_ndwi"]
+        
+        diagnosis = {
+            "crop": crop_type,
+            "condition": metrics["status"],
+            "severity": metrics["stress_level"],
+            "probable_causes": [],
+            "treatments": [],
+            "irrigation_advice": ""
+        }
+
+        # Moisture check
+        if ndwi < 0.1:
+            diagnosis["probable_causes"].append("Severe Moisture Deficit / Drought Risk")
+            diagnosis["irrigation_advice"] = "Increase irrigation frequency immediately. Target root-zone moistening."
+        else:
+            diagnosis["irrigation_advice"] = "Moisture levels are adequate. Maintain standard schedule."
+
+        # Biomass / Disease check
+        if ndvi < 0.4:
+            diagnosis["probable_causes"].extend([
+                "Nitrogen/Nutrient Deficiency",
+                "Fungal or Pest Disease Outbreak",
+                "Soil Salinity or Poor Drainage"
+            ])
+            diagnosis["treatments"].extend([
+                "Apply Nitrogen-rich fertilizer (e.g., Urea) or organic compost.",
+                "Conduct ground scouting in low-NDVI zones to inspect for foliar pathogens.",
+                "Check soil pH and Electrical Conductivity (EC) levels."
+            ])
+        else:
+            diagnosis["treatments"].append("No immediate chemical treatment required. Continue routine monitoring.")
+
+        return diagnosis
