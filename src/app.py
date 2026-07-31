@@ -1,6 +1,11 @@
 import sys
 import os
 
+# Add the project root directory to Python's module search path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import sys
+import os
+
 # Add parent directory (root folder) to Python search path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
