@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-from src.satellite_engine import SatelliteProcessor
+from satellite_engine import SatelliteProcessor
 from src.ai_doctor import CropDoctorAI
 
 st.set_page_config(page_title="Satellite AI Crop Doctor", layout="wide")
