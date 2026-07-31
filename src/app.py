@@ -1,8 +1,16 @@
+import sys
+import os
+
+# Add parent directory (root folder) to Python search path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Now all your `from src.xxx import yyy` lines will work without throwing errors:
+from src.ai_doctor import CropDoctorAI
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
-from satellite_engine import SatelliteProcessor
+from src.satellite_engine import SatelliteProcessor
 from src.ai_doctor import CropDoctorAI
 
 st.set_page_config(page_title="Satellite AI Crop Doctor", layout="wide")
